@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/** using media query breakpoints of of freecodecamp
+ ** https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/ */
+
+/** Tablets and mobile devices */
+@media screen and (320px <= width <= 768px) {
+  .intro {
+    height: 800px;
+  }
+
+  .about {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .selfie .selfie-text {
+    display: none;
+  }
+
+  .data-container {
+    flex-direction: column;
+    gap: .3rem;
+  }
+
+  .education .date {
+    width: min(450px, 80vw);
+  }
+
+  .experience .date {
+    /** Same var as in .stroke class in main.css file */
+    --left: -40px;
+    width: min(350px, calc(80vw + var(--left)));
+  }
+
+  *:first-child > .stroke::before,
+  *:last-child > .stroke::before {
+    inset-block: calc(-1 * var(--gap));
+  }
+
+  .skills-container {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  .skill-container:nth-child(2) {
+    order: initial;
+  }
+
+  .contacts-social {
+    width: 100%;
+    background-color: var(--background-200);
+  }
+
+  .contacts {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0;
+    height: auto;
+    margin: 0;
+    padding-block: 2rem;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .contacts::after {
+    position: absolute;
+    content: "";
+    inset-inline
+    : 30px;
+    height: 1px;
+    bottom: 0;
+    background-color: var(--text-color);
+  }
+
+  .contact {
+    flex-direction: row;
+    width: auto;
+    gap: .5rem;
+  }
+
+  .contact > h3 {
+    display: none;
+  }
+
+  .contact__icon {
+    position: initial;
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 1rem;
+    width: initial;
+    height: initial;
+    padding: 0;
+  }
+
+  .social {
+    width: 100%;
+    gap: 1.5em;
+    border-radius: 0;
+    padding: 0;
+    padding-block: 2rem;
+    background-color: transparent;
+  }
+
+  .social a {
+    background-color: var(--background-200);
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .social > a > .fa-brands {
+    font-size: 1.2rem;
+  }
+}
+
+/** Tablets */
+@media screen and (480px < width <= 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  footer > p {
+    font-size: 1.1rem;
+  }
+
+  .contacts::after {
+    inset-inline: initial;
+    width: 400px;
+    margin-inline: auto;
+  }
+}
+
+/** Mobile devices */
+@media screen and (320px <= width <= 480px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  p {
+    font-size: 1rem;
+  }
+
+  footer > p {
+    margin-top: 0;
+  }
+}

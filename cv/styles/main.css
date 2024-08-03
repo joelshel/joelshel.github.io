@@ -1,0 +1,414 @@
+@charset "UTF-8";
+
+.intro {
+  height: max(500px, 100vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, var(--background-100), var(--background-200));
+}
+
+/** title animation inspired from https://www.proglobalbusinesssolutions.com/css-hover-effects/ */
+.title-container {
+  font-family: 'Roboto Mono', monospace;
+  color: var(--orange-800);
+}
+
+/** Class that makes the underscore blink */
+.hidden {
+  opacity: 0;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 7rem;
+}
+
+.about-container > p {
+  width: min(400px, 90vw);
+}
+
+.emphasis {
+  font-weight: bold;
+  color: var(--blue-800);
+}
+
+.selfie-container {
+  background: radial-gradient(var(--orange-900), var(--orange-100) 40%, var(--orange-100));
+  border-radius: 50%;
+}
+
+/** This piece of code is based on https://www.proglobalbusinesssolutions.com/css-hover-effects/ */
+.selfie {
+  --base-size: 15rem;
+  --easing: all 0.5s cubic-bezier(.55, 0, .1, 1);
+  display: block;
+  position: relative;
+  width: var(--base-size);
+  height: var(--base-size);
+  cursor: pointer;
+  background: url(../images/photo.png) no-repeat center center;
+  background-size: 100%;
+  border-radius: 50%;
+  transition: var(--easing);
+  box-shadow: 0px .5rem 1rem rgba(0, 0, 0, .25);
+  
+  &:hover {
+    box-shadow: 0px .5rem 2rem rgba(0, 0, 0, .25);
+    
+    .selfie-text {
+      align-items: start;
+      padding: 2.5rem;
+      color: var(--blue-300);
+      transform: rotate(-45deg) translate(0px) rotate(-315deg);
+      background: rgba(var(--blue-800), .5);
+      width: var(--base-size);
+      letter-spacing: .5rem;
+      height: var(--base-size);
+      margin-top: calc(-1 * var(--base-size) / 2);
+      margin-left: calc(-1 * var(--base-size) / 2);
+      transition:
+      var(--easing),
+      letter-spacing 1.5s ease-out;
+    }
+  }
+  
+  .selfie-text {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: calc(var(--base-size) / 2);
+    height: calc(var(--base-size) / 2);
+    line-height: 1.2em;
+    left: 50%;
+    top: 50%;
+    margin-top: calc(-1 * var(--base-size) / 4);
+    margin-left: calc(-1 * var(--base-size) / 4);
+    font-size: 1.4rem;
+    font-family: Raleway, sans-serif;
+    text-align: center;
+    color: var(--background-200);
+    border-radius: 50%;
+    background: var(--blue-800);
+    transform: rotate(-180deg) translate(calc(-1 * var(--base-size) / 2)) rotate(180deg);
+    box-shadow: 0px .5rem 1rem rgba(0, 0, 0, .25);
+    transition: var(--easing);
+  }
+}
+
+.education {
+  height: max(500px, 100vh);;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-container {
+  display: flex;
+  align-items: center;
+  gap: 10%;
+}
+
+.date {
+  width: 245px;
+  font-weight: 500;
+  color: var(--blue-800);
+}
+
+.education__description-container {
+  width: min(450px, 80vw);
+}
+
+.experience__description-container {
+  width: min(350px, calc(80vw + var(--left)));
+}
+
+.education__description-container > h3 {
+  color: var(--blue-800)
+}
+
+.education__icon::before {
+  font: var(--fa-font-solid);
+  content: '\f19d';
+  margin-right: .5em;
+  font-size: .9em;
+}
+
+.institution {
+  color: var(--blue-300);
+  width: 250px;
+}
+
+.hover-underline-animation {
+  background: linear-gradient(0deg, var(--blue-100), var(--blue-100)) no-repeat right bottom / 0 2px;
+  transition: background-size 500ms;
+}
+
+.hover-underline-animation:hover {
+  background-size: 100% 2px;
+  background-position-x: left;
+  
+}
+
+.education, .experience, .skills, footer {
+  background-color: var(--background-100);
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.experience > h2 {
+  margin-bottom: 1em;
+}
+
+.experience-container {
+  --gap: 4em;
+  margin-bottom: 5em;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+}
+
+/** Class that makes the line in the experience section 
+ ** Works side-by-side with the circle-arrow class
+ ** If needed to use elsewhere it needs to define the car --gap in the container */
+.stroke {
+  --circle-size: 25px;
+  --stroke-width: 2px;
+  --half-circle-size: calc(var(--circle-size)/2);
+  --left: -40px;
+  position: relative;
+}
+
+.stroke::before {
+  position: absolute;
+  content: '';
+  background-color: var(--orange-900);
+  inset-block: calc(-1 * var(--gap));
+  left: calc(var(--left) + var(--half-circle-size) + var(--stroke-width)/2);
+  width: var(--stroke-width);
+  right: -20px;
+}
+
+/** Attempt of making the class generic (looks like it's (kinda) working :)) */
+*:first-child > .stroke::before {
+  top: calc((-1 * var(--gap)) / 2);
+}
+
+*:last-child > .stroke::before {
+  bottom: calc((-1 * var(--gap)) / 2);
+}
+
+.stroke__arrow::after {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  background-color: var(--background-100);
+  color: var(--orange-800);
+  border: 2px solid var(--orange-900);
+  border-radius: 50%;
+  top: calc(50% - var(--half-circle-size));
+  left: var(--left);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--fa-font-solid);
+  content: '\f061';
+  z-index: 1;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 5em;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  padding-inline: 4em;
+}
+
+.skill-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 3em;
+  gap: .2rem;
+}
+
+.skill-container:nth-child(2) {
+  order: 2;
+}
+
+.skill-container > h3 {
+  background-color: var(--orange-100);
+  color: var(--orange-900);
+  width: fit-content;
+  padding: .5em 1em;
+  border-radius: 3px;
+  margin-bottom: 1em;
+}
+
+.skill {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.skill-level {
+  display: flex;
+  gap: .5em;
+}
+
+.skill-level > i {
+  color: var(--blue-800);
+}
+
+.skill-level > i.empty {
+  color: var(--blue-100);
+}
+
+.skill:hover {
+  font-weight: bold;
+}
+
+.skill:hover > .skill-level > i {
+  color: var(--text-color);
+}
+
+.skill:hover > .skill-level > i.empty {
+  color: color-mix(in lab, var(--text-color), transparent)
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer > p {
+  margin-top: .5em;
+  margin-bottom: 5em;
+}
+
+.contacts-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--background-200);
+  width: max(50vw, 550px);
+  height: 200px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 6em;
+}
+
+.contact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 28ch;
+  height: 100%;
+}
+
+.contact h3 {
+  font-size: 1.2rem;
+  color: var(--blue-800);
+}
+
+.contact__icon {
+  --icon-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: calc(-1 * var(--icon-size) / 2);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  font-size: 2rem;
+  color: var(--background-100);
+  background-color: var(--blue-800);
+  padding: .5em;
+  border-radius: 50%;
+}
+
+/** Part of the .social code is inspired by https://www.proglobalbusinesssolutions.com/css-hover-effects/ */
+.social {
+  display: flex;
+  gap: 4em;
+  justify-content: center;
+  background-color: var(--background-200);
+  padding: 1.5em 3.5em;
+  border-radius: 5px 5px 0 0;
+}
+
+.social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background-color: var(--background-200);
+  color: var(--text-color);
+  width: 4rem;
+  height: 4rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.social > a > .fa-brands {
+  font-size: 1.6rem;
+  transition: all .5s;
+}
+
+.social > a:hover > .fa-brands {
+  color: #fff;
+  transform: rotateY(360deg);
+}
+
+.social a::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: top .5s;
+}
+
+.social a:hover::before {
+  top: 0;
+}
+
+a:has(.fa-github)::before {
+  background-color: #010409;
+}
+
+a:has(.fa-linkedin-in)::before {
+  background-color: #0A66C2;
+}
+
+a:has(.fa-gitlab)::before {
+  background-color: #FCA326;
+}
