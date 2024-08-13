@@ -45,9 +45,6 @@ const otherSkills = [{
   name: 'MrBayes',
   level: 3
 }, {
-  name: 'Biopython',
-  level: 3
-}, {
   name: 'Power BI',
   level: 4
 }, {
